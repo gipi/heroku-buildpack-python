@@ -1,9 +1,12 @@
 Heroku buildpack: Python
 ========================
 
-This is a [Heroku buildpack](http://devcenter.heroku.com/articles/buildpacks) for Python apps, powered by [pip](http://www.pip-installer.org/).
+This is a [Heroku buildpack](http://devcenter.heroku.com/articles/buildpacks) for Python apps, powered by [pip](http://www.pip-installer.org/)
+modified to be used for not-heroku deployment: you can pass a tar archive from stdin like
 
-[![Build Status](https://secure.travis-ci.org/heroku/heroku-buildpack-python.png?branch=master)](http://travis-ci.org/heroku/heroku-buildpack-python)
+    $ git --git-dir=/opt/JSDH/.git archive HEAD |  \
+        APP_DIR=/tmp/app REQUEST_ID=1 SKIP_INSTALL=1 bin/compile - /tmp/cache/
+
 
 Usage
 -----
