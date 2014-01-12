@@ -78,11 +78,11 @@ TMP_APP_DIR=$CACHE_DIR/tmp_app_dir
 export PATH=$BUILD_DIR/.heroku/python/bin:$BUILD_DIR/.heroku/vendor/bin:$PATH
 export PYTHONUNBUFFERED=1
 export LANG=en_US.UTF-8
-export C_INCLUDE_PATH=/app/.heroku/vendor/include:$BUILD_DIR/.heroku/vendor/include
-export CPLUS_INCLUDE_PATH=/app/.heroku/vendor/include:$BUILD_DIR/.heroku/vendor/include
-export LIBRARY_PATH=/app/.heroku/vendor/lib:$BUILD_DIR/.heroku/vendor/lib
-export LD_LIBRARY_PATH=/app/.heroku/vendor/lib:$BUILD_DIR/.heroku/vendor/lib
-export PKG_CONFIG_PATH=/app/.heroku/vendor/lib/pkg-config:$BUILD_DIR/.heroku/vendor/lib/pkg-config
+export C_INCLUDE_PATH=${APP_DIR}/.heroku/vendor/include:$BUILD_DIR/.heroku/vendor/include
+export CPLUS_INCLUDE_PATH=${APP_DIR}/.heroku/vendor/include:$BUILD_DIR/.heroku/vendor/include
+export LIBRARY_PATH=${APP_DIR}/.heroku/vendor/lib:$BUILD_DIR/.heroku/vendor/lib
+export LD_LIBRARY_PATH=${APP_DIR}/.heroku/vendor/lib:$BUILD_DIR/.heroku/vendor/lib
+export PKG_CONFIG_PATH=${APP_DIR}/.heroku/vendor/lib/pkg-config:$BUILD_DIR/.heroku/vendor/lib/pkg-config
 
 # Switch to the repo's context.
 cd $BUILD_DIR
@@ -231,11 +231,11 @@ bpwatch stop collectstatic
 set-env PATH '$HOME/.heroku/python/bin:$PATH'
 set-env PYTHONUNBUFFERED true
 set-env PYTHONHOME /app/.heroku/python
-set-default-env LIBRARY_PATH /app/.heroku/vendor/lib
-set-default-env LD_LIBRARY_PATH /app/.heroku/vendor/lib
+set-default-env LIBRARY_PATH ${APP_DIR}/.heroku/vendor/lib
+set-default-env LD_LIBRARY_PATH ${APP_DIR}/.heroku/vendor/lib
 set-default-env LANG en_US.UTF-8
 set-default-env PYTHONHASHSEED random
-set-default-env PYTHONPATH /app/
+set-default-env PYTHONPATH ${APP_DIR}/
 
 
 # Experimental post_compile hook.
