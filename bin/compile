@@ -115,8 +115,8 @@ bpwatch stop clear_old_venvs
 
 # create our virtualenv
 bpwatch start create_venv
-    virtualenv --no-site-packages env
-    source env/bin/activate
+    virtualenv --no-site-packages .heroku/venv
+    source .heroku/venv/bin/activate
 bpwatch stop create_venv
 
 # Restore old artifacts from the cache.
