@@ -199,9 +199,6 @@ hash -r
 
 # Pylibmc support.
 # See [`bin/steps/pylibmc`](pylibmc.html).
-bpwatch start pylibmc_install
-  source $BIN_DIR/steps/pylibmc
-bpwatch stop pylibmc_install
 
 # Install Mercurial if it appears to be required.
 if (grep -Fiq "hg+" requirements.txt) then
