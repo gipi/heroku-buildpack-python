@@ -203,7 +203,7 @@ hash -r
 # Install Mercurial if it appears to be required.
 if (grep -Fiq "hg+" requirements.txt) then
   bpwatch start mercurial_install
-    /app/.heroku/python/bin/pip install  mercurial | cleanup | indent
+    pip install  mercurial | cleanup | indent
   bpwatch stop mercurial_install
 fi
 
