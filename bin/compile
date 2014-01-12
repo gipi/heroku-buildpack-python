@@ -13,7 +13,15 @@ export PATH=:/usr/local/bin:$PATH
 # Paths.
 BIN_DIR=$(cd $(dirname $0); pwd) # absolute path
 ROOT_DIR=$(dirname $BIN_DIR)
+
+# allow to pass a TAR archive to stdin
 BUILD_DIR=$1
+[ "${BUILD_DIR}" = "-" ] && {
+    # don't use tmp.XXX since cause problem with python imports
+    BUILD_DIR=$(mktemp -d /tmp/tmp-XXXXXXXXXX)
+    tar x -C ${BUILD_DIR}
+}
+
 CACHE_DIR=$2
 ENV_FILE=$3
 
