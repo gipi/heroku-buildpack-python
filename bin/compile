@@ -256,5 +256,8 @@ bpwatch start appdir_commit
   deep-mv $BUILD_DIR $APP_DIR
 bpwatch stop appdir_commit
 
+cd $APP_DIR
+# https://github.com/fireteam/virtualenv-tools
+cd .heroku/venv/ && python /opt/virtualenv-tools/virtualenv_tools.py --update auto && cd -
 
 bpwatch stop compile
