@@ -93,9 +93,9 @@ bpwatch start pre_compile
 bpwatch stop pre_compile
 
 # If no requirements given, assume `setup.py develop`.
-if [ ! -f requirements.txt ]; then
+if [ ! -f ${REQUIREMENTS} ]; then
   puts-step "No requirements.txt provided; assuming dist package."
-  echo "-e ." > requirements.txt
+  echo "-e ." > ${REQUIREMENTS}
 fi
 
 # If no runtime given, assume default version.
@@ -197,11 +197,12 @@ fi
 set -e
 hash -r
 
+REQUIREMENTS=${REQUIREMENTS:-requirements.txt}
 # Pylibmc support.
 # See [`bin/steps/pylibmc`](pylibmc.html).
 
 # Install Mercurial if it appears to be required.
-if (grep -Fiq "hg+" requirements.txt) then
+if (grep -Fiq "hg+" ${REQUIREMENTS}) then
   bpwatch start mercurial_install
     pip install  mercurial | cleanup | indent
   bpwatch stop mercurial_install
@@ -214,7 +215,7 @@ puts-step "Installing dependencies using Pip ($PIP_VERSION)"
 [ ! "$FRESH_PYTHON" ] && bpwatch start pip_install
 [ "$FRESH_PYTHON" ] && bpwatch start pip_install_first
 
-pip install -r requirements.txt --exists-action=w --src=./.heroku/src  | cleanup | indent
+pip install -r ${REQUIREMENTS} --exists-action=w --src=./.heroku/src  | cleanup | indent
 
 [ ! "$FRESH_PYTHON" ] && bpwatch stop pip_install
 [ "$FRESH_PYTHON" ] && bpwatch stop pip_install_first
